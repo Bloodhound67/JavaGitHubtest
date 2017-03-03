@@ -1,7 +1,7 @@
 
 
 import java.time.LocalDateTime;
-
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class TimeHandler {
@@ -39,5 +39,22 @@ public class TimeHandler {
 
 		}
 	}
-
+	
+	
+	public static boolean intervallChecker(LocalDateTime bookedStartTime, LocalDateTime bookedStopTime) {
+		String s = "08:00";
+		String c = ""
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+		LocalDateTime open = LocalDateTime.parse(s, formatter);
+		if (bookedStartTime.isBefore(open)) {
+			intervallChecker = false;			
+		}
+		if (bookedStartTime.isBefore(open) )
+		
+		
+		
+		
+		return false;
+	}{ 
+}
 }

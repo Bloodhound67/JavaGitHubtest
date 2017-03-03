@@ -30,6 +30,8 @@ public class Program {
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				System.out.println("Kunde inte läsa input");
+				break;
 			}
 
 			switch (svar) {
@@ -41,8 +43,11 @@ public class Program {
 					bookedCheckedTime = ih.timeInputCheck();
 				} catch (IOException e) {
 					e.printStackTrace();
+					System.out.println("Kunde inte läsa input");
+					break;
 				}
-
+				
+					
 				if (bookCheck(bookedCheckedTime)) {
 					// Här formaterar jag om datum så att det skrivs ut snyggt.					
 					 LocalDateTime dateStart =
@@ -53,8 +58,7 @@ public class Program {
 					 String textStop = dateStop.format(formatter);
 					 System.out.println("Tack för din bokning " + " " + bookedCheckedTime.getName() + " \n" +
 					 "Din bokning är mellan " + textStart + " och " + textStop + "\n" );					
-				} else;
-
+				}
 				break;
 
 			case "2":
@@ -66,7 +70,6 @@ public class Program {
 					System.out.println("Tack för att du har använt detta program");
 					break;
 				}
-				else;
 				System.out.println("Du måste ange ett av de ovan nämna alternativen");
 				break;
 			}
@@ -98,5 +101,6 @@ public class Program {
 
 		}
 	}
+
 }
 

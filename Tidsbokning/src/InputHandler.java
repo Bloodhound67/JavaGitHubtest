@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class InputHandler {
 	static TimeHandler th = new TimeHandler();
@@ -28,11 +29,12 @@ public class InputHandler {
 		do {
 			System.out.println("Ange starttid ");
 			System.out.println("yy-MM-dd HH:mm");
+			bookStartinput = reader.readLine().trim();
 			try {
-				bookStartinput = reader.readLine().trim();
+				
 				bookedStartTime = LocalDateTime.parse(bookStartinput, formatter);
 				shouldCont = false;
-			} catch (Exception e) {
+			} catch (DateTimeParseException e) {
 				System.out.println("Skriv in ett giltigt datum ");
 				shouldCont = true;
 			}
@@ -41,12 +43,12 @@ public class InputHandler {
 		do {
 			System.out.println("Ange stopptid ");
 			System.out.println("yy-MM-dd HH:mm ");
-			try {
-				bookStopinput = reader.readLine().trim();
+			bookStopinput = reader.readLine().trim();
+			try {				
 				bookedStopTime = LocalDateTime.parse(bookStopinput, formatter);
 				shouldCont = false;
 
-			} catch (Exception e) {
+			} catch (DateTimeParseException e) {
 				System.out.println("Skriv in ett giltigt datum ");
 				shouldCont = true;
 			}
