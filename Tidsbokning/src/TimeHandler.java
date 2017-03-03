@@ -1,6 +1,7 @@
 
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
@@ -17,14 +18,24 @@ public class TimeHandler {
 	}
 
 	public boolean checkTime(LocalDateTime bookedStartTime, LocalDateTime bookedStopTime) {
+
+
+		if (intervallChecker(bookedStartTime.toLocalTime(), bookedStopTime.toLocalTime())) {
+			System.out.println("tiden är inom när vi är öppet");
+		} else {
+			System.out.println("Det går inte att boka den är tiden");
+			return false;
+		}
+
+
 		for (BookedTime current : timeBookedList) {
 
 			if (bookedStartTime.isAfter(current.getBookedStopTime())
 					|| (bookedStopTime.isBefore(current.getBookedStartTime()))) {
-			} 
-			else {		
+			} else {
 				return false;
 			}
+
 		}
 		return true;
 	}
@@ -39,22 +50,19 @@ public class TimeHandler {
 
 		}
 	}
-	
-	
-	public static boolean intervallChecker(LocalDateTime bookedStartTime, LocalDateTime bookedStopTime) {
+
+
+	public static boolean intervallChecker(LocalTime bookedStartTime, LocalTime bookedStopTime) {
 		String s = "08:00";
-		String c = ""
+		String c = "18:00";
+
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-		LocalDateTime open = LocalDateTime.parse(s, formatter);
-		if (bookedStartTime.isBefore(open)) {
-			intervallChecker = false;			
-		}
-		if (bookedStartTime.isBefore(open) )
-		
-		
-		
-		
-		return false;
-	}{ 
+		LocalTime open = LocalTime.parse(s, formatter);
+		LocalTime close = LocalTime.parse(c, formatter);
+
+		return (bookedStartTime.compareTo(open) >= 0 && bookedStartTime.compareTo(close) <= 0)
+				&& (bookedStopTime.compareTo(open) >= 0 && bookedStopTime.compareTo(close) <= 0);
+	}
+
 }
-}
+// }
